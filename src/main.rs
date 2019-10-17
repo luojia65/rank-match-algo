@@ -2,6 +2,7 @@ use std::borrow::Borrow;
 use std::collections::HashMap;
 use std::hash::Hash;
 
+#[derive(Clone)]
 pub struct Arena<T> {
     players: HashMap<T, (usize, usize)>,
 }
