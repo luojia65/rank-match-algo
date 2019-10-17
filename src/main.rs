@@ -34,7 +34,10 @@ where
     }
 }
 
-impl<T> Arena<T> where T: Hash + Eq {
+impl<T> Arena<T>
+where
+    T: Hash + Eq,
+{
     pub fn rank_update(&mut self) {
         for (_, (min_rank_i, max_rank_i)) in &mut self.players {
             if *min_rank_i > usize::min_value() {
@@ -45,7 +48,7 @@ impl<T> Arena<T> where T: Hash + Eq {
             }
         }
     }
-    
+
     pub fn rank_match(&self) -> Vec<&T> {
         let mut max_rank = usize::min_value();
         let mut min_rank = usize::max_value();
@@ -57,8 +60,8 @@ impl<T> Arena<T> where T: Hash + Eq {
         for (_, (min_rank_i, max_rank_i)) in &self.players {
             let index_l = min_rank_i - min_rank;
             let index_r = max_rank_i - min_rank + 1;
-            cnt[index_l] += 1; 
-            cnt[index_r] -= 1; 
+            cnt[index_l] += 1;
+            cnt[index_r] -= 1;
         }
         let mut max_cnt = isize::min_value();
         let mut max_cnt_i = 0;
